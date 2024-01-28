@@ -68,7 +68,7 @@ class NNSBD(day: Int, classroom: Int){
                 i.value=i.value.filterNot { it == lesson }
         }
         for (i in errors.value){
-            if (lesson == i.second || lesson == i.second){
+            if (lesson == i.first || lesson == i.second){
                 errors.value=errors.value.filterNot { it == i }
             }
         }
