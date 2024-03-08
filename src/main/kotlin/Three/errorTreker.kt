@@ -18,9 +18,9 @@ import textStyle3
 
 @Composable
 fun er(BD: NNSBD){
-    LazyColumn(Modifier.fillMaxSize()) {
+    LazyColumn(Modifier.fillMaxSize().padding(10.dp)) {
         items(BD.errors.value.chunked(2)) { er ->
-            Row(Modifier.height(150.dp)){
+            Row{
                 Row(Modifier.weight(0.075f)){}
 
                 Row(Modifier.weight(0.4f)){
@@ -43,9 +43,9 @@ fun er(BD: NNSBD){
 
 @Composable
 fun prError(er: Pair<Lesson, Lesson>){
-    Column(Modifier.fillMaxSize().background(PanelOneColor)){
+    Column(Modifier.fillMaxSize().background(PanelOneColor).padding(10.dp)){
         Text("Конфликт", style = textStyle2)
-        Text("Учитель:${er.first.teacher}")
+        Text("Учитель:${er.first.teacher}", style = textStyle2)
         Column(Modifier.fillMaxHeight(0.4f)){
             Text(er.first.name, style = textStyle3)
             Text("День-${er.first.day}, ${er.first.timeStart/60}:${er.first.timeStart%60} - ${er.first.timeEnd/60}:${er.first.timeEnd%60}", style = textStyle3)

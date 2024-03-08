@@ -69,7 +69,7 @@ fun addLesson(BD: NNSBD){
             Column {
                 Text("Учитель", style = textStyle3)
                 if (lessons[0].value!="" && name.value!="" && lessons[0].value.toIntOrNull()!=null && teacher.value==""){
-                    BD.findLesTea(name.value, lessons[0].value.toInt(), teacher)
+                    BD.findLesTea(name.value, lessons[0].value.toInt()-1, teacher)
                 }
                 PanelInputTwo(teacher, expandedTwo)
                 SelectPanel(teacher, BD.teachers.value, expandedTwo)

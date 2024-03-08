@@ -5,6 +5,6 @@ fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
         //mainBox()
         //testNew()
-        newMainBox(NNBD)
+        mainBox()
     }
 }

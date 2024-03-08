@@ -73,7 +73,7 @@ fun segmentTwo() {
 fun segmentThree(){
     Row(Modifier
         .fillMaxHeight()
-        .fillMaxWidth(0.92f)
+        .fillMaxWidth(0.95f)
         .background(BackgroundOneColor)
     ){
         if (three.value == 1){TeacherPanel(NNBD)}

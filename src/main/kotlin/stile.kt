@@ -15,9 +15,12 @@ var shape = 15.dp
 
 var BackgroundOneColor= Color(0xFFC9E4EA)
 var BackgroundTwoColor= Color(0xFFF5F5F5)
+
 var TextColor= Color(0xFF333333)
+
 var ButtonOneColor= Color(0xFF1E73FF)
 var ButtonTwoColor= Color(0xFFFF8A80)
+
 var PanelOneColor= Color(0xFFFFFFFF)
 
 var textStyle1=TextStyle(

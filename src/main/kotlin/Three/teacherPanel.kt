@@ -7,6 +7,7 @@ import NNSBD
 import PanelInput
 import PanelOneColor
 import Teacher
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -20,6 +21,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import textStyle3
 import textStyle4
@@ -44,23 +46,25 @@ fun  TeacherPanel(BD: NNSBD){
 
 @Composable
 fun teacher(teacherName: Teacher, BD: NNSBD){
-    Row(Modifier.fillMaxSize().background(PanelOneColor).border(0.dp, Color(145, 151, 153), shape = RoundedCornerShape(10.dp))){
-        Row(Modifier.fillMaxWidth(0.8f).align(Alignment.CenterVertically)){ Text(teacherName.name, style = textStyle4) }
-        Row(Modifier.fillMaxHeight().fillMaxWidth()){ delTeacherButton(teacherName, BD) }
+    Row(Modifier.fillMaxSize().background(PanelOneColor, shape = RoundedCornerShape(50.dp)).border(0.dp, Color(145, 151, 153), shape = RoundedCornerShape(50.dp)),
+        horizontalArrangement = Arrangement.End){
+        Row(Modifier.fillMaxHeight()){ delTeacherButton(teacherName, BD) }
+        Row(Modifier.fillMaxWidth().align(Alignment.CenterVertically)){ Text(teacherName.name, style = textStyle4) }
     }
+
 }
 
 @Composable
 fun addTeacher(BD: NNSBD){
+    var teacher = remember {  mutableStateOf("") }
     Column(Modifier.fillMaxSize()){
         Row(Modifier.fillMaxWidth().fillMaxHeight(0.1f)) {}
         Row(Modifier.fillMaxWidth().fillMaxHeight(0.7f)) {
             Row(Modifier.weight(0.3f).fillMaxHeight()) {}
             Row(Modifier.background(PanelOneColor).weight(0.4f).fillMaxHeight()) {
-                var teacher = remember {  mutableStateOf("") }
-                Row(Modifier.fillMaxWidth(0.8f)){ PanelInput(teacher) }
-                Row(Modifier.fillMaxWidth()){ addTeacherButton(teacher, BD) }
+                Row(Modifier.fillMaxWidth()){ PanelInput(teacher) }
             }
+            Row{ addTeacherButton(teacher, BD) }
             Row(Modifier.weight(0.3f).fillMaxHeight()) {}
         }
         Row(Modifier.fillMaxWidth().fillMaxHeight(0.2f)) {}
@@ -71,7 +75,8 @@ fun addTeacher(BD: NNSBD){
 fun addTeacherButton(teacher: MutableState<String>, BD: NNSBD){
     Surface(
         modifier = Modifier
-            .fillMaxSize(1f)
+            .fillMaxHeight(1f)
+            .aspectRatio(1f)
             .clickable(onClick = {
                 if (teacher.value!=""){
                     BD.addTeacher(teacher.value)
@@ -80,11 +85,14 @@ fun addTeacherButton(teacher: MutableState<String>, BD: NNSBD){
             }),
         color = ButtonOneColor,
         contentColor = Color.White,
-        shape = RoundedCornerShape(10.dp)
+        shape = RoundedCornerShape(50.dp)
     ) {
         Box(Modifier.fillMaxSize(1f),
             contentAlignment = Alignment.Center) {
-            Text("Добавить")
+            Image(
+                painter = painterResource("ok.svg"),
+                contentDescription = "Добавить"
+            )
         }
     }
 }
@@ -93,17 +101,21 @@ fun addTeacherButton(teacher: MutableState<String>, BD: NNSBD){
 fun delTeacherButton(teacher: Teacher, BD: NNSBD){
     Surface(
         modifier = Modifier
-            .fillMaxSize(1f)
+            .fillMaxHeight(1f)
+            .aspectRatio(1f)
             .clickable(onClick = {
                 BD.delTeacher(teacher)
             }),
         color = ButtonTwoColor,
         contentColor = Color.White,
-        shape = RoundedCornerShape(10.dp)
+        shape = RoundedCornerShape(50.dp)
     ) {
         Box(Modifier.fillMaxSize(1f),
             contentAlignment = Alignment.Center) {
-            Text("del")
+            Image(
+                painter = painterResource("delete.svg"),
+                contentDescription = "Del"
+            )
         }
     }
 }
